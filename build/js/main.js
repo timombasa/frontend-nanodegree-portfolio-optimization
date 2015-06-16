@@ -424,7 +424,7 @@ var resizePizzas = function(size) {
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldwidth = elem.offsetWidth;
-    var windowwidth = document.getElementById("randomPizzas").offsetWidth;
+    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -439,7 +439,7 @@ var resizePizzas = function(size) {
           return 0.5;
         default:
           console.log("bug in sizeSwitcher");
-      } 
+      }
     }
 
     var newsize = sizeSwitcher(size);
@@ -449,15 +449,11 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
-  // Declare and Initialize variables outside of the loop. getElementsByClassName works better than querySelectorAll
   function changePizzaSizes(size) {
-
-    var pizzas = document.getElementsByClassName("randomPizzaContainer");
-    var dx = determineDx(pizzas[0], size);
-    var newwidth = pizzas[0].offsetWidth + dx + 'px';
-
-    for (var i = 0; i < pizzas.length; i++) {
-      pizzas[i].style.width = newwidth;
+    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
   }
 
@@ -502,18 +498,13 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
-// TODO: optimize this function!
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  // Again replacing querySelectorAll with getElementsByClassName
-  var items = document.getElementsByClassName('.mover');
-
-  // Removing document.body.scrollTop from the for loop since there's no need to access the DOM everytime we iterate through
-  var topOfPage = document.body.scrollTop / 1250;
+  var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((topOfPage) + (i % 5));
+    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -545,4 +536,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
   updatePositions();
+});
+
+// Measuring the Critical Rendering Path with Navigation Timing
+// https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp
+
+function logCRP() {
+  var t = window.performance.timing,
+    dcl = t.domContentLoadedEventStart - t.domLoading,
+    complete = t.domComplete - t.domLoading;
+  var stats = document.getElementById("crp-stats");
+  stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
+}
+
+window.addEventListener("load", function(event) {
+  logCRP();
 });
