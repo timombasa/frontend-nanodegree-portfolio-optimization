@@ -23,7 +23,7 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
 	gulp.src('css/*.css')
 		.pipe(minifyCSS())
-		.pipe(gulp.dest('minCSS'));
+		.pipe(gulp.dest('build/css'));
 });
 
 // Minify HTML

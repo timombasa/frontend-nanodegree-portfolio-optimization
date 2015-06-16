@@ -11,10 +11,10 @@
   </head>
 
   <!-- Inlining CSS that was previously in style.css -->
-  <body style="margin: 0; font-size: 14px; line-height: 1.61; font-weight: 400 font-family: 'Open Sans', sans-serif; color: #333;">
-    <header>
-      <a href="/"><img style="width: 70px; height: 70px" src="img/profilepic.jpg"></a>
-      <p>Cameron Pittman<br><span>Course Developer</span></p>
+  <body style="margin: 0; font-size: 14px; line-height: 1.61; font-weight: 400 font-family: 'Open Sans', sans-serif; color: #333; background: #fff;">
+    <header style="padding: 0 0.5em; color: #C90B0B;">
+      <a href="/"><img style="width: 70px; height: 70px border-radius: 40px; float: left;" src="img/profilepic.jpg"></a>
+      <p style="font-size:1.5em; font-weight: bold; padding-left: 4em;">Cameron Pittman<br><span style="font-size: 0.8em; font-weight: normal;">Course Developer</span></p>
     </header>
 
     <div class="container">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="content">
-        <ul>
+        <ul style="margin: 1em 0; padding: 0 0 0 20px;">
           <li>
             <!-- Resized and declared fixed widths and heights for all images in this document -->
             <img style="width: 123px; height: 50px" src="img/rsz_2048.png">
@@ -51,38 +51,25 @@
         </ul>
     </div>
 
-    <footer>
+    <footer style="padding: 0 0.5em; border-top: 1px solid #ccc;">
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
+        <!-- Moved blocking CSS to the bottom of the page -->
+    <link href="css/style.css" rel="stylesheet">
     <script async src="https://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
-    <script async src="//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <!-- Using Web Font Loader library to enable loading fonts regardless of the source-->
+    <script async>
+        WebFont.load({
+          google: {
+            families: ['Droid Sans', 'Droid Serif']
+          }
+        });
+    </script>
     <script async>(function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
     </script>
-    <script>
-      var font = new FontFace("Open Sans", "url(//fonts.googleapis.com/css?family=Open+Sans:400,700)", {
-                  style: 'normal', unicodeRange: 'U+000-5FF', weight: '400,700'
-          });
-
-          font.load(); // don't wait for render tree, initiate immediate fetch!
-
-          font.ready().then(function() {
-              // apply the font (which may rerender text and cause a page reflow)
-              // once the font has finished downloading
-              document.fonts.add(font);
-              document.body.style.fontFamily = "Open Sans, sans";
-
-              // OR... by default content is hidden, and rendered once font is available
-              var content = document.getElementById("content");
-              content.style.visibility = "visible";
-          });
-      </script>
   </body>
-    <!-- Moved blocking CSS to the bottom of the page -->
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
 </html>
 
