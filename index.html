@@ -3,31 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content=" Mobile-Optimized Portfolio ">
-    <meta name="author" content=" Tim Ombasa ">
+    <meta name="description" content="Mobile-Optimized Portfolio">
+    <meta name="author" content="Tim Ombasa">
     <title>Cameron Pittman: Portfolio</title>
 
-    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/print.css" rel="stylesheet">
-
-    <script>
-      (function(w,g){w['GoogleAnalyticsObject']=g;
-      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
-
-      // TODO: replace with your Google Analytics profile ID.
-      ga('create', 'UA-XXXX-Y');
-      ga('send', 'pageview');
-    </script>
-    <script src="http://www.google-analytics.com/analytics.js"></script>
-    <script async src="js/perfmatters.js"></script>
+    <link href="css/print.css" rel="stylesheet" media="print">
   </head>
 
-  <body>
+  <!-- Inlining CSS that was previously in style.css -->
+  <body style="margin: 0; font-size: 14px; line-height: 1.61; font-weight: 400 font-family: 'Open Sans', sans-serif; color: #333;">
     <header>
-      <a href="/"><img src="img/profilepic.jpg"></a>
+      <a href="/"><img style="width: 70px; height: 70px" src="img/profilepic.jpg"></a>
       <p>Cameron Pittman<br><span>Course Developer</span></p>
     </header>
 
@@ -39,6 +25,7 @@
       <div class="content">
         <ul>
           <li>
+            <!-- Resized and declared fixed widths and heights for all images in this document -->
             <img style="width: 123px; height: 50px" src="img/rsz_2048.png">
             <a href="project-2048.html">Build Your Own 2048!</a>
             <p>I made my own version of 2048. How cool is that!?</p>
@@ -57,7 +44,7 @@
           </li>
 
           <li>
-            <img style="width: 100px; height: 66px" src="views/images/rsz_pizzeria.jpg">
+            <img style="width: 113px; height: 66px" src="views/images/rsz_pizzeria.jpg">
             <a href="views/pizza.html">Cam's Pizzeria</a>
             <p>Who wants a performant pizza?</p>
           </li>
@@ -67,5 +54,35 @@
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    <script async src="js/perfmatters.js"></script>
+    <script async src="//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script async>(function(w,g){w['GoogleAnalyticsObject']=g;
+      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
+    </script>
+    <script>
+      var font = new FontFace("Open Sans", "url(//fonts.googleapis.com/css?family=Open+Sans:400,700)", {
+                  style: 'normal', unicodeRange: 'U+000-5FF', weight: '400,700'
+          });
+
+          font.load(); // don't wait for render tree, initiate immediate fetch!
+
+          font.ready().then(function() {
+              // apply the font (which may rerender text and cause a page reflow)
+              // once the font has finished downloading
+              document.fonts.add(font);
+              document.body.style.fontFamily = "Open Sans, sans";
+
+              // OR... by default content is hidden, and rendered once font is available
+              var content = document.getElementById("content");
+              content.style.visibility = "visible";
+          });
+      </script>
   </body>
+    <!-- Moved blocking CSS to the bottom of the page -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
 </html>
+

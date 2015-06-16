@@ -14,7 +14,8 @@ a:focus { outline: thin dotted; }
 a:hover, a:active { color: #c00; outline: 0; }
 
 b, strong { font-weight: bold; }
-pre, code { font-family: monospace, monospace; font-size: 1em; }
+/* Not essential in loading index.html*/
+pre, code { font-family: monospace, monospace; font-size: 1em !important; }
 ul, ol { margin: 1em 0; padding: 0 0 0 20px; }
 img { border: 0; max-width: 100%; }
 
