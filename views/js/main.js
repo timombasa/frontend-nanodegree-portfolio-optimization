@@ -455,8 +455,9 @@ var resizePizzas = function(size) {
     var pizzas = document.getElementsByClassName("randomPizzaContainer");
     var dx = determineDx(pizzas[0], size);
     var newwidth = pizzas[0].offsetWidth + dx + 'px';
+    var pizzasLength = pizzas.length;
 
-    for (var i = 0; i < pizzas.length; i++) {
+    for (var i = 0; i < pizzasLength; i++) {
       pizzas[i].style.width = newwidth;
     }
   }
@@ -473,8 +474,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -508,7 +509,7 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   // Again replacing querySelectorAll with getElementsByClassName
-  var items = document.getElementsByClassName('.mover');
+  var items = document.getElementsByClassName('mover');
 
   // Removing document.body.scrollTop from the for loop since there's no need to access the DOM everytime we iterate through
   var topOfPage = document.body.scrollTop / 1250;
