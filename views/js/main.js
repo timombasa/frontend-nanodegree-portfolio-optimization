@@ -514,8 +514,10 @@ function updatePositions() {
 
   // Removing document.body.scrollTop from the for loop since there's no need to access the DOM everytime we iterate through
   var topOfPage = document.body.scrollTop / 1250;
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((topOfPage) + (i % 5));
+  var phase = Math.sin((topOfPage) + (i % 5));
+
+  var lengthOfItems = items.length;
+  for (var i = 0; i < lengthOfItems; i++) {
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -536,8 +538,9 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  var elem = document.createElement('img');
+
   for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
