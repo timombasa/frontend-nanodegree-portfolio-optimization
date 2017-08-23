@@ -3,7 +3,7 @@
 This project's goal is to optimize an online portfolio for speed! In particular, I have optimized the critical rendering path to make the pages render as quickly as possible by applying the techniques picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
 
-GETTING STARTED
+### GETTING STARTED
 
 1. Check out the repository
 2. To inspect the site on your phone, run a local server
@@ -30,16 +30,16 @@ GETTING STARTED
 6. Copy the public URL ngrok gives you and run it through PageSpeed Insights!
 Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
 
-###PROJECT ACCOMPLISHMENTS
+### PROJECT ACCOMPLISHMENTS
 
-###Part 1: I optimized the PageSpeed Insights score for the main portfolio page to at least 90 for Mobile and Desktop by:
+### Part 1: I optimized the PageSpeed Insights score for the main portfolio page to at least 90 for Mobile and Desktop by:
 - Inlined CSS that was previously in a separate stylesheet
 - Compressed images using compressor.io to convert to Base64 format
 - Resized and declared fixed widths and heights for all images
 - Moved blocking CSS to the bottom of the page
 
 
-###Part 2: To optimize views/pizza.html, I modified views/js/main.js until my frames per second rate renders at 60 fps or higher when scrolling. I did so in the following ways:
+### Part 2: To optimize views/pizza.html, I modified views/js/main.js until my frames per second rate renders at 60 fps or higher when scrolling. I did so in the following ways:
 - Optimized the function that moves the sliding background pizzas based on scroll position by removing the need to access the DOM everytime we iterate through a collection
 - Dynamically calculated number of pizzas needed to fill the screen based on browser window resolution using innerHeight
 - Generally improved performance by removing object references from conditional statements
