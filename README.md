@@ -29,20 +29,24 @@ GETTING STARTED
   $> ngrok 8080
   ```
 
-6. Copy the public URL ngrok gives you and run it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+6. Copy the public URL ngrok gives you and run it through PageSpeed Insights!
+Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
 
 
 ####Part 2: Optimize Frames per Second in pizza.html
 To optimize index.html, I did the following:
-
-
-
+- Inlined CSS that was previously in a separate stylesheet
+- Compressed images using compressor.io to convert to Base64 format
+- Resized and declared fixed widths and heights for all images
+- Moved blocking CSS to the bottom of the page
 
 To optimize views/pizza.html, I have modified views/js/main.js until my frames per second rate renders at 60 fps or higher when scrolling. I did so in the following ways:
+- Optimized the function that moves the sliding background pizzas based on scroll position by removing the need to access the DOM everytime we iterate through a collection
+- Dynamically calculated number of pizzas needed to fill the screen based on browser window resolution using innerHeight
+- Generally improved performance by removing object references from conditional statements
+- Used getElementById instead of querySelector because it is faster
 
-
-
-Also, time to resize pizzas should now be less than 5 ms using the pizza size slider on the views/pizza.html page.
+- Lastly, the time it takes to resize pizzas is less than 5 ms using the pizza size slider on the views/pizza.html page.
 
 
 ### Optimization Tips and Tricks
